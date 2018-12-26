@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['username'])){
+if (!isset($_SESSION['username'])) {
     header('Location:./login.html');
 }
 ?>
@@ -60,13 +60,13 @@ if(!isset($_SESSION['username'])){
         </form>
     </div>
     <script>
-        layui.use(['form', 'layer'], function () {
+        layui.use(['form', 'layer'], function() {
             $ = layui.jquery;
             var form = layui.form,
-            layer = layui.layer;
+                layer = layui.layer;
 
             //监听提交
-            form.on('submit(add)', function (data) {
+            form.on('submit(add)', function(data) {
                 // 发异步，把数据提交给php
                 $.ajax({
                     url: "./php/add/add.php",
@@ -75,11 +75,12 @@ if(!isset($_SESSION['username'])){
                         'clothes_color': data.field.c_color
                     },
                     dataType: 'json',
-                    success: function (data) {
-                        // console.log(data);                        
-                        layer.msg("增加成功", {time:500,
+                    success: function(data) {
+                        // console.log(data);
+                        layer.msg("增加成功", {
+                            time: 500,
                             icon: 6
-                        }, function () {
+                        }, function() {
                             // 获得frame索引
                             var index = parent.layer.getFrameIndex(window.name);
                             // console.log(index);

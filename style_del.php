@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!isset($_SESSION['username'])){
+if (!isset($_SESSION['username'])) {
     header('Location:./login.html');
 }
 ?>
@@ -47,7 +47,7 @@ if(!isset($_SESSION['username'])){
 	</div>
 	<script>
 		layui.use('table', function(){
-			var table = layui.table;   
+			var table = layui.table;
 
 			table.render({
 				elem: '#tsshow',
@@ -61,16 +61,16 @@ if(!isset($_SESSION['username'])){
 					{field: 'id', title: 'id', unresize:true, sort: true, fixed: 'left',align:'center',width:80},
 					{field: 'clothes_name', title: '款式名称',align:'center', unresize:true},
 					{field: 'clothes_color', title: '颜色',align:'center', unresize:true},
-					{field: 'createTime', title: '创建时间',  sort: true,align:'center', unresize:true,templet:'#createTime'}, 
-					{field: 'updateTime', title: '更新时间',  sort: true,align:'center', unresize:true,templet:'#updateTime'}, 
+					{field: 'createTime', title: '创建时间',  sort: true,align:'center', unresize:true,templet:'#createTime'},
+					{field: 'updateTime', title: '更新时间',  sort: true,align:'center', unresize:true,templet:'#updateTime'},
 					{field: 'is_del', title: '状态', unresize:true,align:'center',templet:'#is_del'}
-					<?php 
-						if($_SESSION['username'] == 'admin'){
-					?>
+					<?php
+if ($_SESSION['username'] == 'admin') {
+    ?>
 					,{field: 'action', title: '操作',align:'center', toolbar: '#barTool', unresize:true}
-					<?php 
-						}
-					?>
+					<?php
+}
+?>
 				]],
 				// 初始化排序
 				initSort: {
@@ -114,19 +114,19 @@ if(!isset($_SESSION['username'])){
 					})
 				}
 
-				
+
 			});
 		});
   	</script>
-	<?php 
-		if($_SESSION['username'] == 'admin'){
-	?>
+	<?php
+if ($_SESSION['username'] == 'admin') {
+    ?>
 	<script type="text/html" id="barTool">
 		<a class="layui-btn layui-btn-xs" lay-event="recovery">恢复</a>
 	</script>
 	<?php
-		}
-	?>
+}
+?>
 	<script id="is_del" type="text/html">
 		{{# if(d.is_del == 1 ){ }}
 		<span class="layui-btn layui-btn-danger layui-btn-mini" style="line-height: inherit;">已停售</span>
