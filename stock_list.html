@@ -105,7 +105,6 @@
 	<script>
 		layui.use('table',function(){
 			var table = layui.table;
-
 			table.render({
 				elem:'#clothes_stocklist',
 				url:'./php/show/show.php',
@@ -184,7 +183,7 @@
 				if(!lock){
 					lock = true;
 				}else{
-					return fasle;
+					return false;
 				}
 				var datas = data.field;
 				var actionId = data.form.parentNode.id;

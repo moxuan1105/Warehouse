@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "../../extr/db_connect.php";
 
 $id = addslashes($_POST['id']);
