@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['username'])){
+    header('Location:./login.html');
+}
+?>
 <!DOCTYPE html>
 <html>
 
@@ -40,10 +46,12 @@
 			<i class="layui-icon" style="line-height:38px">ဂ</i></a>
 	</div>
 	<div class="x-body">
+		<?php 
+			if($_SESSION['username'] == 'admin'){
+		?>
 		<xblock>
-			<button class="layui-btn" onclick="x_admin_show('新增款式','./style_add.html',600,400)"><i class="layui-icon"></i>添加</button>
+			<button class="layui-btn" onclick="x_admin_show('新增款式','./style_add.php',600,400)"><i class="layui-icon"></i>添加</button>
 		</xblock>
-		<table id="spshow" lay-filter="spshow"></table>
 
 		<!-- 页面编辑 -->
 		<form class="layui-form" id="editForm" onsubmit="return false;" style="display:none;">
@@ -77,7 +85,10 @@
 				</div>
 			</div>
 		</form>
-		<!-- dsasdasd -->
+		<?php 
+			}
+		?>
+		<table id="spshow" lay-filter="spshow"></table>
 	</div>
 	<script>
 		layui.use('table', function(){
@@ -107,8 +118,14 @@
 					{field: 'clothes_color', title: '颜色',align:'center', unresize:true},
 					{field: 'createTime', title: '创建时间',  sort: true,align:'center', unresize:true,templet:'#createTime'}, 
 					{field: 'updateTime', title: '更新时间',  sort: true,align:'center', unresize:true,templet:'#updateTime'}, 
-					{field: 'is_del', title: '状态', unresize:true,align:'center',templet:'#is_del'},
-					{field: 'action', title: '操作',align:'center', toolbar: '#barTool', unresize:true}
+					{field: 'is_del', title: '状态', unresize:true,align:'center',templet:'#is_del'}
+					<?php 
+						if($_SESSION['username'] == 'admin'){
+					?>
+					,{field: 'action', title: '操作',align:'center', toolbar: '#barTool', unresize:true}
+					<?php 
+						}
+					?>
 				]],
 				initSort: {
 					field: 'createTime', //排序字段，对应 cols 设定的各字段名
@@ -205,10 +222,16 @@
 			});
 		});
     </script>
+	<?php 
+		if($_SESSION['username'] == 'admin'){
+	?>
 	<script type="text/html" id="barTool">
 		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     	<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 	</script>
+	<?php 
+		}
+	?>
 	<script id="is_del" type="text/html">
 		{{# if(d.is_del == 0) }}
 		<span class="layui-btn layui-btn-normal layui-btn-mini" style="line-height: inherit;">已启用</span>

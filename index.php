@@ -26,13 +26,13 @@ if(!isset($_SESSION['username'])){
 <body>
     <!-- 顶部开始 -->
     <div class="container">
-        <div class="logo"><a href="./index.html">仓库管理系统</a></div>
+        <div class="logo"><a href="./index.php">仓库管理系统</a></div>
         <div class="left_open">
             <i title="展开左侧栏" class="iconfont">&#xe699;</i>
         </div>
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item">
-            <a href="javascript:;"><?php echo $_SESSION['username']?></a>
+            <a href="javascript:;"><?php echo $_SESSION['user_cname']?></a>
             <dl class="layui-nav-child"><!-- 二级菜单 -->
               <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">修改密码</a></dd>
               <dd><a href="./php/logout.php">退出</a></dd>
@@ -56,14 +56,14 @@ if(!isset($_SESSION['username'])){
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="style_list.html">
+                        <a _href="style_list.php">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>款式列表</cite>
                             
                         </a>
                     </li >
                     <li>
-                        <a _href="style_del.html">
+                        <a _href="style_del.php">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>停售款式</cite>                            
                         </a>
@@ -104,7 +104,7 @@ if(!isset($_SESSION['username'])){
           </ul>
           <div class="layui-tab-content">
             <div class="layui-tab-item layui-show">
-                <iframe src='./welcome.html' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+                <iframe src='./welcome.php' frameborder="0" scrolling="yes" class="x-iframe"></iframe>
             </div>
           </div>
         </div>

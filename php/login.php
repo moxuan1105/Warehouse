@@ -15,6 +15,7 @@
         session_start();
         $_SESSION['userId'] = $result[0]['id'];
         $_SESSION['username'] = $result[0]['username'];
+        $_SESSION['user_cname'] = $result[0]['user_cname'];
         $message = true;
     }    
     echo json_encode($message);
