@@ -28,7 +28,7 @@
         <a href="">首页</a>
         <a href="">演示</a>
         <a>
-          <cite>导航元素</cite></a>
+          <cite>库存信息</cite></a>
       </span>
       <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
@@ -36,8 +36,8 @@
     <div class="x-body">
       <div class="layui-row">
         <form class="layui-form layui-col-md12 x-so">
-          <input class="layui-input" placeholder="开始日" name="start" id="start" >
-          <input class="layui-input" placeholder="截止日" name="end" id="end">
+          <input class="layui-input" placeholder="开始日" name="start" id="start" lay-verify="required" readonly>
+          <input class="layui-input" placeholder="截止日" name="end" id="end" lay-verify="required" readonly>
           <div class="layui-input-inline">
             <select name="action">
               <option value="">操作状态</option>
@@ -67,31 +67,25 @@
 				loading:true,
 				id:'spAction',
 				cols:[[
-					{field:'id',title:'id',unresize:true,align:'conter',hide:true},
-					{field:'ks',title:'款式名称',unresize:true,align:'conter'},
-					{field:'ys',title:'颜色',unresize:true,align:'center'},
-					{field:'cm',title:'尺码',unresize:true,align:'center'},
-					{field:'sl',title:'数量',unresize:true,align:'center'},
-					{field:'action_time',title:'操作时间',unresize:true,align:'center',templet:'#time'},
+					{field:'id',title:'id',unresize:true,align:'center',hide:true},
+					{field:'clothes_name',title:'款式名称',unresize:true,align:'center'},
+					{field:'clothes_color',title:'颜色',unresize:true,align:'center'},
+					{field:'clothes_size',title:'尺码',unresize:true,align:'center'},
+					{field:'clothes_num',title:'数量',unresize:true,align:'center'},
+					{field:'action_time',title:'操作时间',unresize:true,align:'center',sort:true,templet:'#time'},
 					{field:'action',title:'操作项',unresize:true,align:'center'},
 					{field:'czr',title:'操作人',unresize:true,align:'center'}
 				]],
 			});
 
-			
-			// table.reload('spAction',{
-			// 	url:'',
-			// 	where:{
-
-			// 	}
-			// });
+		
 			form.on('submit(sreach)',function(data){
 				var datas = data.field;
 				var startTime = datas.start;
 				var endTime = datas.end;
 				var action = datas.action;
 				var c_style = datas.c_style;
-				// console.log(data);
+				// 表格重载
 				table.reload('spAction', {
 					url: "./php/sreach/sreach.php",
 					method:'post',

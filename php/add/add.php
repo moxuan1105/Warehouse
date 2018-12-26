@@ -10,25 +10,26 @@ require_once '../../extr/db_connect.php';
 
 $flag = false;
 
-$ks = $_GET['ks'];
-$ys = $_GET['ys'];
-$ys = trim($ys,'|');
+$clothes_name = $_GET['clothes_name'];
+$clothes_color = $_GET['clothes_color'];
+$clothes_color = trim($clothes_color,'|');
 $arrayDataValue = array(
-    'ks'=> addslashes($ks),
-    'ys'=> addslashes($ys),
-    'createTime'=>time()
+    'clothes_name'=> addslashes($clothes_name),
+    'clothes_color'=> addslashes($clothes_color),
+    'createTime'=>time(),
+    'updateTime'=>time()
 );
-$yssz = explode('|',$ys);
-$yssz = array_filter($yssz);
+$clothes_colorsz = explode('|',$clothes_color);
+$clothes_colorsz = array_filter($clothes_colorsz);
 // 事务开始
 $db->beginTransaction();
 try {
-    // 插入ks表
-    $table = "ks";
+    // 插入clothes_name表
+    $table = "clothes_name";
     $db->insert($table,$arrayDataValue);
-    for($i=0;$i<count($yssz);$i++){
-        // 对于kc表进行插入操作
-        $sql = 'insert into kc(`ks`,`ys`) value("'.$ks.'","'.$yssz[$i].'")';
+    for($i=0;$i<count($clothes_colorsz);$i++){
+        // 对于clothes_stock表进行插入操作
+        $sql = 'insert into clothes_stock(`clothes_name`,`clothes_color`) value("'.$clothes_name.'","'.$clothes_colorsz[$i].'")';
         $db->execSql($sql);
     }
     // 提交

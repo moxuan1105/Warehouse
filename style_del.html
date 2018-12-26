@@ -53,9 +53,10 @@
 				loading: true,
 				cols: [[ //表头
 					{field: 'id', title: 'id', unresize:true, sort: true, fixed: 'left',align:'center',width:80},
-					{field: 'ks', title: '款式名称',align:'center', unresize:true},
-					{field: 'ys', title: '颜色',align:'center', unresize:true},
+					{field: 'clothes_name', title: '款式名称',align:'center', unresize:true},
+					{field: 'clothes_color', title: '颜色',align:'center', unresize:true},
 					{field: 'createTime', title: '创建时间',  sort: true,align:'center', unresize:true,templet:'#createTime'}, 
+					{field: 'updateTime', title: '更新时间',  sort: true,align:'center', unresize:true,templet:'#updateTime'}, 
 					{field: 'is_del', title: '状态', unresize:true,align:'center',templet:'#is_del'},
 					{field: 'action', title: '操作',align:'center', toolbar: '#barTool', unresize:true}
 				]],
@@ -72,7 +73,7 @@
 				var layEvent = obj.event;
 				var tr = obj.tr;
 				if(layEvent === 'recovery'){
-					layer.confirm('确定恢复款式: ' + data.ks + ' 吗?', function (index) {
+					layer.confirm('确定恢复款式: ' + data.clothes_name + ' 吗?', function (index) {
 						$.ajax({
 							url: "./php/del/recovery.php",
 							data: { 'id': data.id },
@@ -115,6 +116,9 @@
 	</script>
 	<script id="createTime" type="text/html">
 		{{ timestampToTime(d.createTime) }}
+	</script>
+	<script id="updateTime" type="text/html">
+		{{ timestampToTime(d.updateTime) }}
 	</script>
 </body>
 

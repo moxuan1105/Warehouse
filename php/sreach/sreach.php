@@ -11,35 +11,36 @@
     $startTime = strtotime($_POST['startTime']);
     $endTime = strtotime($_POST['endTime']);
     $action = $_POST['action'];
-    $ks = $_POST['c_style'];
+    $clothes_name = $_POST['c_style'];
 
-//  $a = array($limit,$page,$startTime,$endTime,$action,$ks);
+//  $a = array($limit,$page,$startTime,$endTime,$action,$clothes_name);
 //  var_dump($a);
-
-    if(''==$ks){
+    $sql_info = "select * from info where action_time between $startTime and $endTime ";
+    $sql_count = "select count(id) as count from info where action_time between $startTime and $endTime ";
+    if(''==$clothes_name){
         if(''==$action){
-            $sql_info = "select * from info where action_time between $startTime and $endTime limit $page,$limit";
-            $sql_count = "select count(id) as count from info where action_time between $startTime and $endTime";
+
         }else if('0' == $action){
-            $sql_info = "select * from info where action_time between $startTime and $endTime and action = '入库' limit $page,$limit";
-            $sql_count = "select count(id) as count from info where action_time between $startTime and $endTime and action = '入库'";
+            $sql_info .= " and action = '入库' ";
+            $sql_count .= " and action = '入库' ";
         }else if('1' == $action){
-            $sql_info = "select * from info where action_time between $startTime and $endTime and action = '出库' limit $page,$limit";
-            $sql_count = "select count(id) as count from info where action_time between $startTime and $endTime and action = '出库'";
+            $sql_info .= " and action = '出库' ";
+            $sql_count .= " and action = '出库' ";
         }
     }else{
         if(''==$action){
-            $sql_info = "select * from info where action_time between $startTime and $endTime and ks = '$ks' limit $page,$limit";
-            $sql_count = "select count(id) as count from info where action_time between $startTime and $endTime and ks = '$ks'";
+            $sql_info .= " and clothes_name = '$clothes_name' ";
+            $sql_count .= " and clothes_name = '$clothes_name' ";
         }else if('0' == $action){
-            $sql_info = "select * from info where action_time between $startTime and $endTime and ks = '$ks' and action = '入库' limit $page,$limit";
-            $sql_count = "select count(id) as count from info where action_time between $startTime and $endTime and ks = '$ks' and action = '入库'";
+            $sql_info .= " and clothes_name = '$clothes_name' and action = '入库' ";
+            $sql_count .= " and clothes_name = '$clothes_name' and action = '入库' ";
         }else if('1' == $action){
-            $sql_info = "select * from info where action_time between $startTime and $endTime and ks = '$ks' and action = '出库' limit $page,$limit";
-            $sql_count = "select count(id) as count from info where action_time between $startTime and $endTime and ks = '$ks' and action = '出库'";
+            $sql_info .= " and clothes_name = '$clothes_name' and action = '出库' ";
+            $sql_count .= " and clothes_name = '$clothes_name' and action = '出库' ";
         }
     }
 
+    $sql_info .= " order by action_time desc limit $page,$limit";
     $datas = $db->query($sql_info);
     $count = $db->query($sql_count);
 

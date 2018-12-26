@@ -4,9 +4,9 @@ require_once '../../extr/db_connect.php';
 $limit = $_GET['limit'];
 $page = ($_GET['page']-1)*$limit;
 
-$sql = "select kc.* from kc join ks on kc.ks = ks.ks and ks.is_del=0 order by ks desc limit $page,$limit";
+$sql = "select clothes_stock.* from clothes_stock join clothes_name on clothes_stock.clothes_name = clothes_name.clothes_name and clothes_name.is_del=0 order by clothes_name desc limit $page,$limit";
 // echo $sql;
-$sql_count = "select count(kc.id) as count from kc join ks on kc.ks = ks.ks and ks.is_del=0";
+$sql_count = "select count(clothes_stock.id) as count from clothes_stock join clothes_name on clothes_stock.clothes_name = clothes_name.clothes_name and clothes_name.is_del=0";
 // $result = $db->query($sql);
 
 $datas = $db->query($sql);

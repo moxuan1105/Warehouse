@@ -7,7 +7,7 @@
 
  $id = $_POST['id'];
 
- $sql = "update `ks` set is_del = 1 where id = $id";
+ $sql = "update `clothes_name` set is_del = 1 ,updateTime = ".time()." where id = $id";
  $result = $db->execSql($sql);
  echo json_encode($result);
 

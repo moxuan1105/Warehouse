@@ -46,7 +46,7 @@
 			<i class="layui-icon" style="line-height:30px">ဂ</i></a>
 	</div>
 	<div class="x-body">
-		<table id="kclist" lay-filter="kclist"></table>
+		<table id="clothes_stocklist" lay-filter="clothes_stocklist"></table>
 	</div>
 
 	<!-- 页面编辑 -->
@@ -76,7 +76,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">选择尺码</label>
 			<div class="layui-input-inline">
-				<select name="cm" id='cm' lay-verify="required">
+				<select name="clothes_size" id='clothes_size' lay-verify="required">
 					<option value="">选择尺码</option>
 					<option value="S">S</option>
 					<option value="M">M</option>
@@ -90,7 +90,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">数量</label>
 			<div class="layui-input-inline">
-				<input type="text" id="sl" name="sl" required lay-verify="required" autocomplete="off" class="layui-input">
+				<input type="text" id="clothes_num" name="clothes_num" required lay-verify="required" autocomplete="off" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -107,7 +107,7 @@
 			var table = layui.table;
 
 			table.render({
-				elem:'#kclist',
+				elem:'#clothes_stocklist',
 				url:'./php/show/show.php',
 				page: true, //开启分页
 				limit: 15,
@@ -117,26 +117,27 @@
 				// id:'idTest',
 				cols: [[ //表头
 					{field: 'id', title: 'id', sort: true, align:'center',hide:true},
-					{field: 'ks', title: '款式名称',align:'center', unresize:true, sort: true,},
-					{field: 'ys', title: '颜色',align:'center', unresize:true},
+					{field: 'clothes_name', title: '款式名称',align:'center', unresize:true, sort: true,},
+					{field: 'clothes_color', title: '颜色',align:'center', unresize:true},
 					{field: 'S', title: 'S', align:'center', unresize:true}, 
 					{field: 'M', title: 'M', unresize:true,align:'center'},
 					{field: 'L', title: 'L',align:'center',  unresize:true},
 					{field: 'XL', title: 'XL',align:'center', unresize:true},
 					{field: 'XXL', title: 'XXL',align:'center', unresize:true},
-					{field: 'kc', title: '库存',align:'center', unresize:true,templet:'#kc'},
+					{field: 'clothes_stock', title: '库存',align:'center', unresize:true,templet:'#clothes_stock'},
 					{field: 'action', title: '操作',align:'center', toolbar: '#barTool', unresize:true,width:150},
 				]],
 				// 初始化排序
 				// initSort: {
-				// 	field: 'ks', //排序字段，对应 cols 设定的各字段名
+				// 	field: 'clothes_name', //排序字段，对应 cols 设定的各字段名
 				// 	type: 'desc', //排序方式  asc: 升序、desc: 降序、null: 默认排序
 				// }
 			});
 			
-			table.on('tool(kclist)',function(obj){
+			table.on('tool(clothes_stocklist)',function(obj){
 				var data = obj.data;
 				var layEvent = obj.event;
+				var layer= layui.layer;
 				
 				if(layEvent === 'edit') {
 					layer.open({
@@ -150,8 +151,8 @@
 						// shade: 0.8,
 						content: $('#editForm'),
 						success: function (layer, index) {
-							$('#c_style').val(data.ks);
-							$('#c_color').val(data.ys);
+							$('#c_style').val(data.clothes_name);
+							$('#c_color').val(data.clothes_color);
 							$('#id').val(data.id);
 						}
 					});
@@ -167,8 +168,8 @@
 						// shade: 0.8,
 						content: $('#editForm'),
 						success: function (layer, index) {
-							$('#c_style').val(data.ks);
-							$('#c_color').val(data.ys);
+							$('#c_style').val(data.clothes_name);
+							$('#c_color').val(data.clothes_color);
 							$('#id').val(data.id);
 						}
 					});
@@ -193,10 +194,10 @@
 						url:'./php/ruku/ruku.php',
 						data:{
 							'id':datas.id,
-							'ks':datas.c_style,
-							'ys':datas.c_color,
-							'cm':datas.cm,
-							'sl':datas.sl
+							'clothes_name':datas.c_style,
+							'clothes_color':datas.c_color,
+							'clothes_size':datas.clothes_size,
+							'clothes_num':datas.clothes_num
 						},
 						dataType:'json',
 						type:'post',
@@ -225,10 +226,10 @@
 						url:'./php/chuku/chuku.php',
 						data:{
 							'id':datas.id,
-							'ks':datas.c_style,
-							'ys':datas.c_color,
-							'cm':datas.cm,
-							'sl':datas.sl
+							'clothes_name':datas.c_style,
+							'clothes_color':datas.c_color,
+							'clothes_size':datas.clothes_size,
+							'clothes_num':datas.clothes_num
 						},
 						dataType:'json',
 						type:'post',
@@ -265,7 +266,7 @@
 		<a class="layui-btn layui-btn-xs" lay-event="edit">入库</a>
 		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">出库</a>
 	</script>
-	<script id="kc" type="text/html">
+	<script id="clothes_stock" type="text/html">
 		{{ parseInt(d.S)+parseInt(d.M)+parseInt(d.L)+parseInt(d.XL)+parseInt(d.XXL)}}
 	</script>
 </body>

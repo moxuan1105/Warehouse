@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(!isset($_SESSION['username'])){
+    header('Location:./login.html');
+}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,10 +32,10 @@
         </div>
         <ul class="layui-nav right" lay-filter="">
           <li class="layui-nav-item">
-            <a href="javascript:;">admin</a>
+            <a href="javascript:;"><?php echo $_SESSION['username']?></a>
             <dl class="layui-nav-child"><!-- 二级菜单 -->
               <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">修改密码</a></dd>
-              <dd><a href="./login.html">退出</a></dd>
+              <dd><a href="./php/logout.php">退出</a></dd>
             </dl>
           </li>
           <!-- <li class="layui-nav-item to-index"><a href="/">退出</a></li> -->
@@ -50,14 +56,14 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="member-list.html">
+                        <a _href="style_list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>款式列表</cite>
                             
                         </a>
                     </li >
                     <li>
-                        <a _href="member-del.html">
+                        <a _href="style_del.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>停售款式</cite>                            
                         </a>
@@ -72,13 +78,13 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="order-list.html">
+                        <a _href="stock_list.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>库存列表</cite>
                         </a>
                     </li >
                     <li>
-                        <a _href="order-list1.html">
+                        <a _href="stock_info.html">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>操作信息</cite>
                         </a>

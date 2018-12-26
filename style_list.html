@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 
@@ -42,7 +41,7 @@
 	</div>
 	<div class="x-body">
 		<xblock>
-			<button class="layui-btn" onclick="x_admin_show('新增款式','./member-add.html',600,400)"><i class="layui-icon"></i>添加</button>
+			<button class="layui-btn" onclick="x_admin_show('新增款式','./style_add.html',600,400)"><i class="layui-icon"></i>添加</button>
 		</xblock>
 		<table id="spshow" lay-filter="spshow"></table>
 
@@ -104,9 +103,10 @@
 				 *  templet 使用自定义模板 把显示的内容按照自己的方式去显示
 				 * */
 					{field: 'id', title: 'id', unresize:true, sort: true, align:'center',width:80},
-					{field: 'ks', title: '款式名称',align:'center', unresize:true},
-					{field: 'ys', title: '颜色',align:'center', unresize:true},
+					{field: 'clothes_name', title: '款式名称',align:'center', unresize:true},
+					{field: 'clothes_color', title: '颜色',align:'center', unresize:true},
 					{field: 'createTime', title: '创建时间',  sort: true,align:'center', unresize:true,templet:'#createTime'}, 
+					{field: 'updateTime', title: '更新时间',  sort: true,align:'center', unresize:true,templet:'#updateTime'}, 
 					{field: 'is_del', title: '状态', unresize:true,align:'center',templet:'#is_del'},
 					{field: 'action', title: '操作',align:'center', toolbar: '#barTool', unresize:true}
 				]],
@@ -132,12 +132,12 @@
 						// shade: 0.8,
 						content: $('#editForm'),
 						success: function (layer, index) {
-							$('#c_style').val(data.ks);
-							$('#c_color').val(data.ys);
+							$('#c_style').val(data.clothes_name);
+							$('#c_color').val(data.clothes_color);
 						}
 					});
 				}else if(layEvent === 'del'){
-					layer.confirm('确定删除款式: ' + data.ks + ' 吗?', function (index) {
+					layer.confirm('确定删除款式: ' + data.clothes_name + ' 吗?', function (index) {
 						$.ajax({
 							url: "./php/del/del.php",
 							data: { 'id': data.id },
@@ -176,9 +176,9 @@
 				$.ajax({
 					url:'./php/add/edit_color.php',
 					data:{
-						'ks':datas.c_style,
-						'ys':datas.c_color,
-						'add_ys':datas.c_color_add
+						'clothes_name':datas.c_style,
+						'clothes_color':datas.c_color,
+						'add_clothes_color':datas.c_color_add
 					},
 					type:'post',
 					dataType:'json',
@@ -195,8 +195,7 @@
 							layer.alert("增加失败", {icon: 5}, function () {
 								// 获得frame索引
 								var index = layer.index;
-								//关闭当前frame
-								
+								//关闭当前frame								
 								layer.close(index);
 								window.location.reload();
 							});
@@ -216,6 +215,9 @@
 	</script>
 	<script id="createTime" type="text/html">
 		{{ timestampToTime(d.createTime) }}
+	</script>
+	<script id="updateTime" type="text/html">
+		{{ timestampToTime(d.updateTime) }}
 	</script>
 </body>
 
