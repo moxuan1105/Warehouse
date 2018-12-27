@@ -52,7 +52,7 @@ if (!isset($_SESSION['username'])) {
 			table.render({
 				elem: '#tsshow',
 				// height: 'full-250',
-				url: './php/info/ts.php', //数据接口
+				url: './src/clothes_style/clothes_style.php?action=style_stop_list', //数据接口
 				page: true, //开启分页
 				limit: 15,
 				limits: [15],
@@ -80,24 +80,22 @@ if ($_SESSION['username'] == 'admin') {
 			});
 
 			table.on('tool(tsshow)',function(obj){
-				console.log("aaa");
 				var data = obj.data;
 				var layEvent = obj.event;
 				var tr = obj.tr;
 				if(layEvent === 'recovery'){
 					layer.confirm('确定恢复款式: ' + data.clothes_name + ' 吗?', function (index) {
 						$.ajax({
-							url: "./php/del/recovery.php",
+							url: "./src/clothes_style/clothes_style.php?action=style_recovery",
 							data: { 'id': data.id },
 							type: "post",
 							dataType: 'json',
 							success: function (data) {
-								if (data) {
+								if (data) {4
 									layer.msg('恢复成功', {
 										icon: 1,
 										time: 500
 									}, function () {
-										// obj.del();
 										layer.close(index);
 										table.reload('tsshow', {
 											page: true
@@ -113,8 +111,6 @@ if ($_SESSION['username'] == 'admin') {
 						})
 					})
 				}
-
-
 			});
 		});
   	</script>

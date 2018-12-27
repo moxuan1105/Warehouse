@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>操作记录</title>
@@ -57,10 +58,10 @@
 		layui.use(['table','form'],function(){
 			var table = layui.table;
 			var form = layui.form;
-			
+
 			table.render({
 				elem:'#sp_action',
-				url:'./php/info/info.php',
+				url:'./src/clothes_stock/clothes_stock.php?action=stock_info',
 				page:true,
 				limit:15,
 				limits:[15],
@@ -78,7 +79,7 @@
 				]],
 			});
 
-		
+
 			form.on('submit(sreach)',function(data){
 				var datas = data.field;
 				var startTime = datas.start;
@@ -87,11 +88,11 @@
 				var clothes_name = datas.clothes_name;
 				// 表格重载
 				table.reload('spAction', {
-					url: "./php/sreach/sreach.php",
+					url: "./src/clothes_stock/clothes_stock.php?action=stock_info_sreach",
 					method:'post',
 					page: {
 						curr: 1
-					},					
+					},
 					where: {
 						startTime: startTime,
 						endTime:endTime,
@@ -105,7 +106,7 @@
 
 
 		layui.use('laydate', function(){
-			var laydate = layui.laydate;			
+			var laydate = layui.laydate;
 			//执行一个laydate实例
 			laydate.render({
 				elem: '#start' //指定元素

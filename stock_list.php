@@ -27,7 +27,7 @@
 
     	.x-body>table{
 			overflow-y: scroll;
-		} 
+		}
 
 	</style>
 </head>
@@ -61,16 +61,16 @@
 		<div class="layui-form-item" style="margin-top:20px;">
 			<label class="layui-form-label">款式名称</label>
 			<div class="layui-input-inline">
-				<input type="text" id="clothes_name" name="clothes_name" required lay-verify="required" placeholder="款式名称" autocomplete="off"
-				 class="layui-input" readonly>
+				<input type="text" id="clothes_name" name="clothes_name" required lay-verify="required" placeholder="款式名称"
+				 autocomplete="off" class="layui-input" readonly>
 			</div>
 		</div>
 
 		<div class="layui-form-item">
 			<label class="layui-form-label">款式颜色</label>
 			<div class="layui-input-inline">
-				<input type="text" id="clothes_color" name="clothes_color" required lay-verify="required" placeholder="款式颜色" autocomplete="off"
-				 class="layui-input" readonly>
+				<input type="text" id="clothes_color" name="clothes_color" required lay-verify="required" placeholder="款式颜色"
+				 autocomplete="off" class="layui-input" readonly>
 			</div>
 		</div>
 		<div class="layui-form-item">
@@ -108,7 +108,7 @@
 			var table = layui.table;
 			table.render({
 				elem:'#clothes_stocklist',
-				url:'./php/show/show.php',
+				url:'./src/clothes_stock/clothes_stock.php?action=stock_list',
 				page: true, //开启分页
 				limit: 15,
 				limits: [15],
@@ -119,7 +119,7 @@
 					{field: 'id', title: 'id', sort: true, align:'center',hide:true},
 					{field: 'clothes_name', title: '款式名称',align:'center', unresize:true, sort: true,},
 					{field: 'clothes_color', title: '颜色',align:'center', unresize:true},
-					{field: 'S', title: 'S', align:'center', unresize:true}, 
+					{field: 'S', title: 'S', align:'center', unresize:true},
 					{field: 'M', title: 'M', unresize:true,align:'center'},
 					{field: 'L', title: 'L',align:'center',  unresize:true},
 					{field: 'XL', title: 'XL',align:'center', unresize:true},
@@ -133,12 +133,12 @@
 				// 	type: 'desc', //排序方式  asc: 升序、desc: 降序、null: 默认排序
 				// }
 			});
-			
+
 			table.on('tool(clothes_stocklist)',function(obj){
 				var data = obj.data;
 				var layEvent = obj.event;
 				var layer= layui.layer;
-				
+
 				if(layEvent === 'edit') {
 					layer.open({
 						// type 1表示是加载centent的内容 2加载centent链接的页面
@@ -191,7 +191,7 @@
 				if(actionId === 'btn_edit'){
 					// alert(actionId);
 					$.ajax({
-						url:'./php/ruku/ruku.php',
+						url:'./src/clothes_stock/clothes_stock.php?action=stock_add',
 						data:{
 							'id':datas.id,
 							'clothes_name':datas.clothes_name,
@@ -214,7 +214,7 @@
 								layer.msg("入库失败", {time:500,icon: 5}, function () {
 									// 获得frame索引
 									var index = layer.index;
-									//关闭当前frame									
+									//关闭当前frame
 									layer.close(index);
 									window.location.reload();
 								});
@@ -223,7 +223,7 @@
 					});
 				}else if(actionId === 'btn_del'){
 					$.ajax({
-						url:'./php/chuku/chuku.php',
+						url:'./src/clothes_stock/clothes_stock.php?action=stock_out',
 						data:{
 							'id':datas.id,
 							'clothes_name':datas.clothes_name,
@@ -246,7 +246,7 @@
 								layer.msg("出库失败", {time:500,icon: 5}, function () {
 									// 获得frame索引
 									var index = layer.index;
-									//关闭当前frame									
+									//关闭当前frame
 									layer.close(index);
 									window.location.reload();
 								});
@@ -257,7 +257,7 @@
 				// console.log(data);
 				// console.log(datas);
 				// console.log(data.form.parentNode.id);
-				
+
 			});
 		});
 

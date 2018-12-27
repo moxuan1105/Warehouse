@@ -50,7 +50,7 @@ if (!isset($_SESSION['username'])) {
 if ($_SESSION['username'] == 'admin') {
     ?>
 		<xblock>
-			<button class="layui-btn" onclick="x_admin_show('新增款式','./style_add.php',600,400)"><i class="layui-icon"></i>添加</button>
+			<button class="layui-btn" onclick="x_admin_show('新增款式','./style_add1.php',600,400)"><i class="layui-icon"></i>添加</button>
 		</xblock>
 
 		<!-- 页面编辑 -->
@@ -92,17 +92,27 @@ if ($_SESSION['username'] == 'admin') {
 		<table id="spshow" lay-filter="spshow"></table>
 	</div>
 	<script>
+		/**
+		 * 定义全局变量
+		 */
+		var index;
+		var table;
+		var form;
+		var layer;
 		layui.use('table', function(){
-			var table = layui.table;
+			table = layui.table;
+			layer = layui.layer;
 			//第一个实例
 			table.render({
 				elem: '#spshow',
 				// height: 'full-250',
-				url: './src/info/spinfo.php', //数据接口
+				url: './src/clothes_style/clothes_style.php?action=style_list', //数据接口
 				page: true, //开启分页
 				limit: 15,
 				limits: [15],
 				loading: true,
+				method:'post',
+				id:'style_table',
 				cols: [[ //表头
 				/**
 				 *  fidld 重要属性  接口返回的值的key为field的值才能对应
@@ -128,10 +138,10 @@ if ($_SESSION['username'] == 'admin') {
 }
 ?>
 				]],
-				initSort: {
-					field: 'createTime', //排序字段，对应 cols 设定的各字段名
-					type: 'desc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
-				}
+				// initSort: {
+				// 	field: 'createTime', //排序字段，对应 cols 设定的各字段名
+				// 	type: 'desc' //排序方式  asc: 升序、desc: 降序、null: 默认排序
+				// }
 			});
 
 			table.on('tool(spshow)',function(obj){
@@ -139,7 +149,8 @@ if ($_SESSION['username'] == 'admin') {
 				var layEvent = obj.event;
 				var tr = obj.tr;
 				if(layEvent === 'edit') {
-					layer.open({
+					// 获取打开的页面的index
+					index = layer.open({
 						// type 1表示是加载centent的内容 2加载centent链接的页面
 						type: 1,
 						title: '颜色编辑',
@@ -152,12 +163,13 @@ if ($_SESSION['username'] == 'admin') {
 						success: function (layer, index) {
 							$('#clothes_name').val(data.clothes_name);
 							$('#clothes_color').val(data.clothes_color);
+							console.log(layer);
 						}
 					});
 				}else if(layEvent === 'del'){
 					layer.confirm('确定删除款式: ' + data.clothes_name + ' 吗?', function (index) {
 						$.ajax({
-							url: "./php/del/del.php",
+							url: "./src/clothes_style/clothes_style.php?action=stop_sell",
 							data: { 'id': data.id },
 							type: "post",
 							dataType: 'json',
@@ -167,18 +179,18 @@ if ($_SESSION['username'] == 'admin') {
 										icon: 1,
 										time: 500
 									}, function () {
-										// obj.del();
-										layer.close(index);
-										table.reload('spshow', {
+										layer.close();
+										// 表格重载进行刷新
+										table.reload('style_table', {
 											page: true
 										})
 									})
 								}else{
-									alert('删除失败');
+									msg('删除失败');
 								}
 							},
 							error: function (data) {
-								alert('删除失败');
+								msg('删除失败');
 							}
 						})
 					})
@@ -187,12 +199,14 @@ if ($_SESSION['username'] == 'admin') {
 		});
 
 		layui.use('form',function(){
-			var form = layui.form;
+			form = layui.form;
+
 			form.on('submit(editform)',function(data){
+
 				var datas = data.field;
 				// console.log(layer.index);
 				$.ajax({
-					url:'./php/add/edit_color.php',
+					url:'./src/clothes_style/clothes_style.php?action=color_edit',
 					data:{
 						'clothes_name':datas.clothes_name,
 						'clothes_color':datas.clothes_color,
@@ -202,20 +216,22 @@ if ($_SESSION['username'] == 'admin') {
 					dataType:'json',
 					success:function(data){
 						if(data){
-							layer.alert("增加成功", {icon: 6}, function () {
-								// 获得frame索引
-								var index = layer.index;
-								//关闭当前frame
+							layer.msg("增加成功", {icon: 6,time:1000}, function () {
+								// 关闭打开的弹出层
 								layer.close(index);
-								window.location.reload();
+								// 重载table表
+								table.reload('style_table', {
+											page: true
+										});
 							});
 						}else{
-							layer.alert("增加失败", {icon: 5}, function () {
-								// 获得frame索引
-								var index = layer.index;
+							layer.msg("增加失败", {icon: 5,time:1000}, function () {
 								//关闭当前frame
 								layer.close(index);
-								window.location.reload();
+								// window.location.reload();
+								teble.reload('style_table', {
+											page: true
+										});
 							});
 						}
 					}

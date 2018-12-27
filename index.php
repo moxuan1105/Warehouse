@@ -38,7 +38,7 @@ if (!isset($_SESSION['username'])) {
                 <dl class="layui-nav-child">
                     <!-- 二级菜单 -->
                     <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">修改密码</a></dd>
-                    <dd><a href="./php/logout.php">退出</a></dd>
+                    <dd><a href="./src/logout.php">退出</a></dd>
                 </dl>
             </li>
             <!-- <li class="layui-nav-item to-index"><a href="/">退出</a></li> -->
@@ -81,13 +81,13 @@ if (!isset($_SESSION['username'])) {
                     </a>
                     <ul class="sub-menu">
                         <li>
-                            <a _href="stock_list.html">
+                            <a _href="stock_list.php">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>库存列表</cite>
                             </a>
                         </li>
                         <li>
-                            <a _href="stock_info.html">
+                            <a _href="stock_info.php">
                                 <i class="iconfont">&#xe6a7;</i>
                                 <cite>操作信息</cite>
                             </a>
