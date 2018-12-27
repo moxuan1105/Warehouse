@@ -1,11 +1,13 @@
-a{
-    padding: 0 1px; 
+a {
+    padding: 0 1px;
 }
-.a{
+
+.a {
     width: 80%;
     margin: 0 auto;
 }
-.b{
+
+.b {
     width: 80%;
     margin: 0 auto;
     text-align: right;

@@ -1,48 +1,59 @@
 /* init */
-html,body,p,a,h1,h2,h3,h4,h5{
+html,
+body,
+p,
+a,
+h1,
+h2,
+h3,
+h4,
+h5 {
     margin: 0px;
     padding: 0px;
     /* overflow: hidden; */
 
 }
 
-html,body{
+html,
+body {
     width: 100%;
     height: 100%;
-    font-family: Arial,"Microsoft YaHei","simsun",sans-serif;
+    font-family: Arial, "Microsoft YaHei", "simsun", sans-serif;
     font-size: 14px/1.5;
-    color:#666;
+    color: #666;
 }
 
-h2{
+h2 {
     text-align: center;
 }
 
-a{
- text-decoration: none;
+a {
+    text-decoration: none;
 }
 
-td{
+td {
     text-align: center;
 }
 
-table{
+table {
     width: 80%;
     margin: 0 auto;
 }
-ul,li{
+
+ul,
+li {
     list-style: none
 }
 
 /* header start */
-#header{
+#header {
     height: 80px;
     background: rgb(173, 224, 233);
 }
 
 /* header end */
 
-#content{
+#content {
     display: flex;
     height: calc(100% - 80px);
     overflow: hidden;
@@ -50,32 +61,33 @@ ul,li{
 }
 
 /* left_menu start */
-#left_menu{
+#left_menu {
     height: 100%;
-    background:rgba(38, 112, 108, 0.842);
+    background: rgba(38, 112, 108, 0.842);
     width: 200px;
 }
 
 
 
 /* right_main start */
-#right_main{
+#right_main {
 
     width: calc(100% - 200px);
     height: 100%;
     background: rgb(217, 248, 250);
 }
+
 /* right_main end */
 
 /* 媒体查询 */
 @media only screen and (max-width: 1366px) {
     body {
-        background-color:lightblue;
+        background-color: lightblue;
     }
 }
 
 @media only screen and (max-width: 500px) {
     body {
-        background-color:rgb(218, 238, 245);
+        background-color: rgb(218, 238, 245);
     }
 }

@@ -61,7 +61,7 @@
 		<div class="layui-form-item" style="margin-top:20px;">
 			<label class="layui-form-label">款式名称</label>
 			<div class="layui-input-inline">
-				<input type="text" id="c_style" name="c_style" required lay-verify="required" placeholder="款式名称" autocomplete="off"
+				<input type="text" id="clothes_name" name="clothes_name" required lay-verify="required" placeholder="款式名称" autocomplete="off"
 				 class="layui-input" readonly>
 			</div>
 		</div>
@@ -69,7 +69,7 @@
 		<div class="layui-form-item">
 			<label class="layui-form-label">款式颜色</label>
 			<div class="layui-input-inline">
-				<input type="text" id="c_color" name="c_color" required lay-verify="required" placeholder="款式颜色" autocomplete="off"
+				<input type="text" id="clothes_color" name="clothes_color" required lay-verify="required" placeholder="款式颜色" autocomplete="off"
 				 class="layui-input" readonly>
 			</div>
 		</div>
@@ -151,8 +151,8 @@
 						// shade: 0.8,
 						content: $('#editForm'),
 						success: function (layer, index) {
-							$('#c_style').val(data.clothes_name);
-							$('#c_color').val(data.clothes_color);
+							$('#clothes_name').val(data.clothes_name);
+							$('#clothes_color').val(data.clothes_color);
 							$('#id').val(data.id);
 						}
 					});
@@ -168,8 +168,8 @@
 						// shade: 0.8,
 						content: $('#editForm'),
 						success: function (layer, index) {
-							$('#c_style').val(data.clothes_name);
-							$('#c_color').val(data.clothes_color);
+							$('#clothes_name').val(data.clothes_name);
+							$('#clothes_color').val(data.clothes_color);
 							$('#id').val(data.id);
 						}
 					});
@@ -194,8 +194,8 @@
 						url:'./php/ruku/ruku.php',
 						data:{
 							'id':datas.id,
-							'clothes_name':datas.c_style,
-							'clothes_color':datas.c_color,
+							'clothes_name':datas.clothes_name,
+							'clothes_color':datas.clothes_color,
 							'clothes_size':datas.clothes_size,
 							'clothes_num':datas.clothes_num
 						},
@@ -226,8 +226,8 @@
 						url:'./php/chuku/chuku.php',
 						data:{
 							'id':datas.id,
-							'clothes_name':datas.c_style,
-							'clothes_color':datas.c_color,
+							'clothes_name':datas.clothes_name,
+							'clothes_color':datas.clothes_color,
 							'clothes_size':datas.clothes_size,
 							'clothes_num':datas.clothes_num
 						},

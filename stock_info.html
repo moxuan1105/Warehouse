@@ -45,7 +45,7 @@
 						<option value="1">出库</option>
 					</select>
 				</div>
-				<input type="text" name="c_style" placeholder="请输入款式名称" autocomplete="off" class="layui-input">
+				<input type="text" name="clothes_name" placeholder="请输入款式名称" autocomplete="off" class="layui-input">
 				<button class="layui-btn" lay-submit lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
 			</form>
 		</div>
@@ -84,7 +84,7 @@
 				var startTime = datas.start;
 				var endTime = datas.end;
 				var action = datas.action;
-				var c_style = datas.c_style;
+				var clothes_name = datas.clothes_name;
 				// 表格重载
 				table.reload('spAction', {
 					url: "./php/sreach/sreach.php",
@@ -96,7 +96,7 @@
 						startTime: startTime,
 						endTime:endTime,
 						action:action,
-						c_style:c_style
+						clothes_name:clothes_name
 					}
 				});
 				return false;

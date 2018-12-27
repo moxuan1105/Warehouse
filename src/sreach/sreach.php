@@ -11,7 +11,7 @@ $page = ($_POST['page'] - 1) * $limit;
 $startTime = strtotime($_POST['startTime']);
 $endTime = strtotime($_POST['endTime']);
 $action = $_POST['action'];
-$clothes_name = $_POST['c_style'];
+$clothes_name = $_POST['style_name'];
 
 //  $a = array($limit,$page,$startTime,$endTime,$action,$clothes_name);
 //  var_dump($a);

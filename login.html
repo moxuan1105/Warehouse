@@ -44,7 +44,7 @@
                 form.on('submit(login)', function (data) {
                     var datas = data.field;
                     $.ajax({
-                        url: './php/login.php',
+                        url: './src/login.php',
                         type: 'post',
                         data: {
                             'username': datas.username,
