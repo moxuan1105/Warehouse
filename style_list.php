@@ -50,7 +50,7 @@ if (!isset($_SESSION['username'])) {
 if ($_SESSION['username'] == 'admin') {
     ?>
 		<xblock>
-			<button class="layui-btn" onclick="x_admin_show('新增款式','./style_add1.php',600,400)"><i class="layui-icon"></i>添加</button>
+			<button class="layui-btn" onclick="x_admin_show('新增款式','./style_add.php',600,400)"><i class="layui-icon"></i>添加</button>
 		</xblock>
 
 		<!-- 页面编辑 -->

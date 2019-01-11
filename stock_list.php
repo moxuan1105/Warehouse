@@ -21,9 +21,9 @@
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
 	<![endif]-->
 	<style>
-		/* .layui-table-view .layui-table {
+		.layui-table-view .layui-table {
 			width:100%
-		}  */
+		}
 
     	.x-body>table{
 			overflow-y: scroll;
@@ -83,6 +83,7 @@
 					<option value="L">L</option>
 					<option value="XL">XL</option>
 					<option value="XXL">XXL</option>
+					<option value="XXXL">XXL</option>
 				</select>
 			</div>
 		</div>
@@ -124,14 +125,10 @@
 					{field: 'L', title: 'L',align:'center',  unresize:true},
 					{field: 'XL', title: 'XL',align:'center', unresize:true},
 					{field: 'XXL', title: 'XXL',align:'center', unresize:true},
+					{field: 'XXXL', title: 'XXXL',align:'center', unresize:true},
 					{field: 'clothes_stock', title: '库存',align:'center', unresize:true,templet:'#clothes_stock'},
 					{field: 'action', title: '操作',align:'center', toolbar: '#barTool', unresize:true,width:150},
 				]],
-				// 初始化排序
-				// initSort: {
-				// 	field: 'clothes_name', //排序字段，对应 cols 设定的各字段名
-				// 	type: 'desc', //排序方式  asc: 升序、desc: 降序、null: 默认排序
-				// }
 			});
 
 			table.on('tool(clothes_stocklist)',function(obj){
@@ -267,7 +264,7 @@
 		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">出库</a>
 	</script>
 	<script id="clothes_stock" type="text/html">
-		{{ parseInt(d.S)+parseInt(d.M)+parseInt(d.L)+parseInt(d.XL)+parseInt(d.XXL)}}
+		{{ parseInt(d.S)+parseInt(d.M)+parseInt(d.L)+parseInt(d.XL)+parseInt(d.XXL)+parseInt(d.XXXL)}}
 	</script>
 </body>
 
