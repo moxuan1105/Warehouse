@@ -3,7 +3,7 @@
  * @Author: moxuan
  * @Date: 2018-12-27 17:19:16
  * @Last Modified by: moxuan
- * @Last Modified time: 2018-12-27 17:51:50
+ * @Last Modified time: 2019-02-11 13:38:42
  */
 require "../../extr/db_connect.php";
 session_start();
@@ -41,7 +41,7 @@ echo $result;
  * @param object $db
  * @return void
  */
-function stock_list(object $db)
+function stock_list($db)
 {
     $limit = $_GET['limit'];
     $page = ($_GET['page'] - 1) * $limit;
@@ -67,7 +67,7 @@ function stock_list(object $db)
  * @param object $db
  * @return string
  */
-function stock_add(object $db)
+function stock_add($db)
 {
     $id = addslashes($_POST['id']);
 
@@ -103,7 +103,7 @@ function stock_add(object $db)
  * @param object $db
  * @return void
  */
-function stock_out(object $db)
+function stock_out($db)
 {
     $id = addslashes($_POST['id']);
 
@@ -139,7 +139,7 @@ function stock_out(object $db)
  * @param object $db
  * @return void
  */
-function stock_info(object $db)
+function stock_info($db)
 {
     $limit = $_GET['limit'];
     $page = ($_GET['page'] - 1) * $limit;
@@ -163,7 +163,7 @@ function stock_info(object $db)
  * @param object $db
  * @return void
  */
-function stock_info_sreach(object $db)
+function stock_info_sreach($db)
 {
     $limit = $_POST['limit'];
     $page = ($_POST['page'] - 1) * $limit;
